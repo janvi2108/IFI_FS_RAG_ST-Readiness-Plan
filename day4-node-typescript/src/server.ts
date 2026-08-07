@@ -48,9 +48,15 @@ app.get('/items', (req: Request, res: Response) => {
   res.json(items);
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`✅ Server is running on http://localhost:${PORT}`);
-  console.log(`📚 Day 4 Learning Project - Node.js + Express + TypeScript`);
-  console.log(`🔗 Visit http://localhost:${PORT}/ to see your first route`);
-});
+// Export app for testing
+export default app;
+
+// Start the server only if this file is run directly
+// This prevents the server from starting during tests
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`✅ Server is running on http://localhost:${PORT}`);
+    console.log(`📚 Day 4 Learning Project - Node.js + Express + TypeScript`);
+    console.log(`🔗 Visit http://localhost:${PORT}/ to see your first route`);
+  });
+}
